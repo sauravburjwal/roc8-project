@@ -9,14 +9,10 @@ import SuggestionCard from './SuggestionCard';
 
 const SearchResult = () => {
   const { searchText } = useParams();
-  const [searchTerm, setSearchTerm] = useState(searchText);
   const [data, setData] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
-  useEffect(() => {
-    setSearchTerm(searchText);
-  }, [searchText]);
   useEffect(() => {
     if (isPopupOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,21 +35,16 @@ const SearchResult = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await getData(searchTerm);
+      const data = await getData(searchText);
       setData(data);
     })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const data = await getData(searchTerm);
-      setData(data);
-    })();
-  }, [searchText, searchTerm]);
+  }, [searchText]);
+
   return (
     <>
       <SearchBox />
       <div className="text-white text-5xl font-bold text-center">
-        <h1>Results: {searchTerm} </h1>
+        <h1>Results: {searchText} </h1>
       </div>
       <div className="w-full h-full mt-8 bg-white overflowx-hidden">
         <div
@@ -61,11 +52,7 @@ const SearchResult = () => {
           id="scrollbar"
         >
           {Random.map((ran) => (
-            <SuggestionCard
-              key={ran}
-              value={ran}
-              setSearchTerm={setSearchTerm}
-            />
+            <SuggestionCard key={ran} value={ran} />
           ))}
         </div>
         <div className="flex flex-wrap justify-around w-full p-8 gap-12 ">
@@ -81,7 +68,6 @@ const SearchResult = () => {
                   imageData={imageData}
                   openPopup={openPopup}
                   setSelectedImage={setSelectedImage}
-                  setSearchTerm={setSearchTerm}
                 />
               );
             })}
@@ -90,7 +76,6 @@ const SearchResult = () => {
               isOpen={isPopupOpen}
               onClose={closePopup}
               selectedImage={selectedImage}
-              setSearchTerm={setSearchTerm}
             />
           ) : null}
         </div>
