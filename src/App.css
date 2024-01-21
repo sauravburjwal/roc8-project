@@ -1,0 +1,33 @@
+.bg-blur {
+  box-shadow: 0px 0px 4px 4px rgba(255, 255, 255, 0.43) inset;
+  backdrop-filter: blur(10px);
+}
+button {
+  transition: all ease-in 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar {
+  width: 0.3rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  width: 100%;
+  background: rgba(0, 0, 0);
+}
+
+/* ================================================= */
+
+#scrollbar::-webkit-scrollbar {
+  height: 2px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+  width: 30%;
+  background: rgba(0, 0, 0);
+}
