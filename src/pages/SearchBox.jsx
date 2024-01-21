@@ -11,7 +11,7 @@ const SearchBox = ({ showTrending }) => {
       <div className="text-sm sm:text-base flex justify-between items-center gap-3 text-white w-3/4 sm:w-2/4 min-h-16 rounded-lg m-8 px-3 sm:px-4  bg-blur mt-12">
         <form
           onSubmit={(e) => {
-            e.preventDefault(); // Prevents the default form submission behavior
+            e.preventDefault();
             navigate(`/search/${searchText}`);
           }}
           className="flex gap-2 flex-1"

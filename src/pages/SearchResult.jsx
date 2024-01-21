@@ -15,6 +15,9 @@ const SearchResult = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
+    setSearchTerm(searchText);
+  }, [searchText]);
+  useEffect(() => {
     if (isPopupOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -34,6 +37,12 @@ const SearchResult = () => {
     setPopupOpen(false);
   };
 
+  useEffect(() => {
+    (async () => {
+      const data = await getData(searchTerm);
+      setData(data);
+    })();
+  }, []);
   useEffect(() => {
     (async () => {
       const data = await getData(searchTerm);
@@ -72,6 +81,7 @@ const SearchResult = () => {
                   imageData={imageData}
                   openPopup={openPopup}
                   setSelectedImage={setSelectedImage}
+                  setSearchTerm={setSearchTerm}
                 />
               );
             })}
@@ -80,6 +90,7 @@ const SearchResult = () => {
               isOpen={isPopupOpen}
               onClose={closePopup}
               selectedImage={selectedImage}
+              setSearchTerm={setSearchTerm}
             />
           ) : null}
         </div>

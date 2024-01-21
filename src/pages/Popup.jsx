@@ -5,13 +5,17 @@ import { useState } from 'react';
 import DownloadSelector from './DownloadSelector';
 import InfoCard from './InfoCard';
 
-const Popup = ({ selectedImage: imageData, isOpen, onClose }) => {
+const Popup = ({
+  selectedImage: imageData,
+  isOpen,
+  onClose,
+  setSearchTerm,
+}) => {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState('');
   const handleImageLoad = () => {
     setLoading(false);
   };
-  console.log(imageData);
   if (imageData === null) return;
   return (
     <div className={`popup ${isOpen ? 'open' : ''} overflow-y-auto `}>
@@ -87,7 +91,12 @@ const Popup = ({ selectedImage: imageData, isOpen, onClose }) => {
       <div className="flex gap-2 m-3 items-center flex-wrap ml-8">
         <h2 className="text-18 font-bold leading-51">Tags:</h2>
         {imageData.tags.split(',').map((tag) => (
-          <Tags key={tag} tag={tag} />
+          <Tags
+            key={tag}
+            tag={tag}
+            setSearchTerm={setSearchTerm}
+            onClose={onClose}
+          />
         ))}
       </div>
     </div>
