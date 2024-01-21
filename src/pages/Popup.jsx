@@ -11,7 +11,6 @@ const Popup = ({ selectedImage: imageData, isOpen, onClose }) => {
   const handleImageLoad = () => {
     setLoading(false);
   };
-  const handleClick = () => {};
   console.log(imageData);
   if (imageData === null) return;
   return (
